@@ -8,12 +8,20 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   padding: 40px 20px;
-  background: #f0f2f5;
+  background: #033681;
+  background-image: url("Bg.png");
   color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 15px auto; 
+  max-width: 210px;         
+  height: auto;
 }
 
 .card {
