@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Pelajar IPGKBA - Pas Kehadiran</title>
+  
+  <!-- External CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- QR Code Generator Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Sistem Kehadiran IPGKBA</h2>
+    <p class="subtitle">Sila Isikan Nombor Kad Pengenalan</p>
+    
+    <div class="input-group">
+      <input type="text" id="matricInput" placeholder="e.g. 05021801xxxx" autocomplete="off" />
+      <button onclick="fetchPass()">Dapatkan QR</button>
+    </div>
+
+    <div id="errorMessage" class="error"></div>
+    <div id="studentName" class="student-info"></div>
+    <div id="qrcode"></div>
+  </div>
+
+  <!-- External JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
