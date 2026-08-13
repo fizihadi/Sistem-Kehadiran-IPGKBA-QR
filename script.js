@@ -21,7 +21,7 @@ function fetchPass() {
     .then(res => res.json())
     .then(data => {
       if (data.found) {
-        nameDiv.innerText = "Selamat Datang, " + data.name + "!";
+        nameDiv.innerText = "HI, " + data.name + "!";
         
         // Generate QR code
         new QRCode(qrDiv, { 
@@ -36,17 +36,18 @@ function fetchPass() {
     })
     .catch(err => {
       nameDiv.innerText = "";
-      errorDiv.innerText = "Error searching database: " + err.message;
+      errorDiv.innerText = "Error: " + err.message;
     });
 }
 
-// Enable pressing "Enter" key to generate QR code automatically
+// Boleh Tekan Enter
 document.getElementById("matricInput").addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     fetchPass();
   }
 });
 
+//CnP punya issue
 const matricInput = document.getElementById("matricInput");
 matricInput.addEventListener("paste", function(e) {
   e.preventDefault();
