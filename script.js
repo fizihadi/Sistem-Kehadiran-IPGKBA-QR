@@ -46,3 +46,9 @@ document.getElementById("matricInput").addEventListener("keypress", function(eve
     fetchPass();
   }
 });
+
+const matricInput = document.getElementById("matricInput");
+matricInput.addEventListener("paste", function(e) {
+  e.preventDefault();
+  alert("Hehe maaf tak boleh paste IC kawan");
+});
