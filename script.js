@@ -1,4 +1,4 @@
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJaT71Jcy1-Po7tEErYGyXh1QGPxVjveCo0F64BOdEiJKvuYsuZg2bcKfiDjIMNmFpLQ/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzRLXBGSxjCn8jiNY-t1LRYU0-7t4VdlRs__E2ydmSqv_DO_8_wxrWd7HIvVSCpvbJMWw/exec";
 let qrRefreshInterval = null;
 
 function fetchPass() {
