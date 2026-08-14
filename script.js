@@ -1,4 +1,5 @@
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6MRHQgzAI_QJOtn2s9EyBPmVp8BoK3ECKrAAVLibFvRQLN4_HTt3LIvF8FudYFI3uBQ/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJaT71Jcy1-Po7tEErYGyXh1QGPxVjveCo0F64BOdEiJKvuYsuZg2bcKfiDjIMNmFpLQ/exec";
+let qrRefreshInterval = null;
 
 function fetchPass() {
   let matric = document.getElementById("matricInput").value.trim();
@@ -6,7 +7,9 @@ function fetchPass() {
   let nameDiv = document.getElementById("studentName");
   let qrDiv = document.getElementById("qrcode");
 
-  // Reset UI elements
+  // Clear existing interval
+  if (qrRefreshInterval) clearInterval(qrRefreshInterval);
+
   errorDiv.innerText = "";
   nameDiv.innerText = "Menyemak Data...";
   qrDiv.innerHTML = "";
@@ -22,13 +25,24 @@ function fetchPass() {
     .then(data => {
       if (data.found) {
         nameDiv.innerText = "HI, " + data.name + "!";
-        
-        // Generate QR code
-        new QRCode(qrDiv, { 
-          text: data.uniqueCode, 
-          width: 180, 
-          height: 180 
-        });
+          
+        // Generate dynamic timed QR
+        function generateTimedQR() {
+          qrDiv.innerHTML = "";
+          let timedPayload = data.uniqueCode + "|" + Date.now();
+          new QRCode(qrDiv, { 
+            text: timedPayload, 
+            width: 180, 
+            height: 180 
+          });
+        }
+
+        // Generate immediately
+        generateTimedQR();
+
+        // Auto-refresh QR code every 30 seconds
+        qrRefreshInterval = setInterval(generateTimedQR, 60000);
+
       } else {
         nameDiv.innerText = "";
         errorDiv.innerText = "❌ Nombor Kad Pengenalan tidak dijumpai!";
@@ -36,20 +50,20 @@ function fetchPass() {
     })
     .catch(err => {
       nameDiv.innerText = "";
-      errorDiv.innerText = "Error: " + err.message;
+      errorDiv.innerText = "Error searching database: " + err.message;
     });
 }
 
-// Boleh Tekan Enter
+// Enable pressing "Enter" key
 document.getElementById("matricInput").addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     fetchPass();
   }
 });
 
-//CnP punya issue
-const matricInput = document.getElementById("matricInput");
-matricInput.addEventListener("paste", function(e) {
+// Prevent paste on IC input
+document.getElementById("matricInput").addEventListener("paste", function(e) {
   e.preventDefault();
-  alert("Hehe maaf tak boleh paste IC kawan");
+  alert("Tak boleh copy & paste yee");
+
 });
