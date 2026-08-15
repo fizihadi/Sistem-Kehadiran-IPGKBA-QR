@@ -24,7 +24,7 @@ function fetchPass() {
     .then(res => res.json())
     .then(data => {
       if (data.found) {
-        nameDiv.innerText = "HII, " + data.name + "!";
+        nameDiv.innerText = "HII, " + data.name + " !";
           
         // Generate dynamic timed QR
         function generateTimedQR() {
