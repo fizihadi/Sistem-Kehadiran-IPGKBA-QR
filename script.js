@@ -24,7 +24,7 @@ function fetchPass() {
     .then(res => res.json())
     .then(data => {
       if (data.found) {
-        nameDiv.innerText = "HI, " + data.name + "!";
+        nameDiv.innerText = "HII, " + data.name + "!";
           
         // Generate dynamic timed QR
         function generateTimedQR() {
@@ -45,7 +45,7 @@ function fetchPass() {
 
       } else {
         nameDiv.innerText = "";
-        errorDiv.innerText = "❌ Nombor Kad Pengenalan tidak dijumpai!";
+        errorDiv.innerText = "Alamak Kad Pengenalan tidak dijumpai!";
       }
     })
     .catch(err => {
